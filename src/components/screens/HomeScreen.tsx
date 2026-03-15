@@ -3,6 +3,7 @@ import { Play, Flame, Trophy, Zap, Calendar } from 'lucide-react';
 import { UserProfile } from '@/lib/types';
 import { getStreak, getTotalWorkouts, getTodayCalories } from '@/lib/store';
 import { gymWorkouts } from '@/lib/workouts';
+import { useI18n } from '@/lib/i18n';
 
 interface HomeScreenProps {
   profile: UserProfile;
@@ -10,6 +11,7 @@ interface HomeScreenProps {
 }
 
 export default function HomeScreen({ profile, onStartWorkout }: HomeScreenProps) {
+  const { t } = useI18n();
   const streak = getStreak();
   const totalWorkouts = getTotalWorkouts();
   const todayCalories = getTodayCalories();
@@ -17,18 +19,16 @@ export default function HomeScreen({ profile, onStartWorkout }: HomeScreenProps)
 
   return (
     <div className="pb-24 px-4 pt-6">
-      {/* Header */}
       <div className="mb-6">
-        <p className="text-muted-foreground text-sm font-body">Welcome back,</p>
+        <p className="text-muted-foreground text-sm font-body">{t('home.welcome')}</p>
         <h1 className="text-4xl font-display gradient-fire-text">{profile.name.toUpperCase()}</h1>
       </div>
 
-      {/* Stats Row */}
       <div className="grid grid-cols-3 gap-3 mb-6">
         {[
-          { icon: Flame, value: streak, label: 'Day Streak', color: 'text-accent' },
-          { icon: Trophy, value: totalWorkouts, label: 'Workouts', color: 'text-warning' },
-          { icon: Zap, value: todayCalories, label: 'Cal Burned', color: 'text-primary' },
+          { icon: Flame, value: streak, label: t('home.streak'), color: 'text-accent' },
+          { icon: Trophy, value: totalWorkouts, label: t('home.workouts'), color: 'text-warning' },
+          { icon: Zap, value: todayCalories, label: t('home.calBurned'), color: 'text-primary' },
         ].map((stat, i) => (
           <motion.div
             key={stat.label}
@@ -44,7 +44,6 @@ export default function HomeScreen({ profile, onStartWorkout }: HomeScreenProps)
         ))}
       </div>
 
-      {/* Today's Workout Card */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -54,13 +53,13 @@ export default function HomeScreen({ profile, onStartWorkout }: HomeScreenProps)
         <div className="p-5">
           <div className="flex items-center gap-2 mb-1">
             <Calendar size={14} className="text-primary" />
-            <span className="text-xs text-muted-foreground uppercase font-body">Today's Workout</span>
+            <span className="text-xs text-muted-foreground uppercase font-body">{t('home.todayWorkout')}</span>
           </div>
           <h2 className="text-3xl font-display mb-1">{todayWorkout.name.toUpperCase()}</h2>
           <div className="flex gap-4 text-sm text-muted-foreground mb-4">
-            <span>{todayWorkout.exercises.length} exercises</span>
-            <span>{todayWorkout.duration} min</span>
-            <span>{todayWorkout.caloriesBurned} cal</span>
+            <span>{todayWorkout.exercises.length} {t('home.exercises')}</span>
+            <span>{todayWorkout.duration} {t('common.min')}</span>
+            <span>{todayWorkout.caloriesBurned} {t('common.cal')}</span>
           </div>
           <div className="flex flex-wrap gap-2 mb-4">
             {todayWorkout.muscleGroups.map(mg => (
@@ -72,13 +71,12 @@ export default function HomeScreen({ profile, onStartWorkout }: HomeScreenProps)
             onClick={() => onStartWorkout(todayWorkout.id)}
             className="w-full py-3 gradient-fire rounded-lg font-display text-lg tracking-wider flex items-center justify-center gap-2 glow-red"
           >
-            <Play size={20} fill="currentColor" /> START WORKOUT
+            <Play size={20} fill="currentColor" /> {t('home.startWorkout')}
           </motion.button>
         </div>
       </motion.div>
 
-      {/* Quick Access */}
-      <h3 className="text-xl font-display mb-3 text-muted-foreground">QUICK ACCESS</h3>
+      <h3 className="text-xl font-display mb-3 text-muted-foreground">{t('home.quickAccess')}</h3>
       <div className="space-y-3">
         {gymWorkouts.slice(0, 3).map((w, i) => (
           <motion.button
@@ -91,7 +89,7 @@ export default function HomeScreen({ profile, onStartWorkout }: HomeScreenProps)
           >
             <div>
               <div className="font-display text-lg">{w.name.toUpperCase()}</div>
-              <div className="text-xs text-muted-foreground">{w.exercises.length} exercises • {w.duration} min</div>
+              <div className="text-xs text-muted-foreground">{w.exercises.length} {t('home.exercises')} • {w.duration} {t('common.min')}</div>
             </div>
             <Play size={18} className="text-primary" />
           </motion.button>
