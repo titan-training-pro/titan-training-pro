@@ -21,6 +21,7 @@ export interface Exercise {
   commonMistakes: string[];
   musclesWorked: string[];
   videoPrompt: string;
+  videoUrl?: string;
   sets: number;
   reps: string;
   restSeconds: number;
