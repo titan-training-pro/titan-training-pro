@@ -4,18 +4,21 @@ import { getProfile } from '@/lib/store';
 import { getWorkoutById } from '@/lib/workouts';
 import Onboarding from '@/components/Onboarding';
 import BottomNav from '@/components/BottomNav';
+import SplashScreen from '@/components/SplashScreen';
 import HomeScreen from '@/components/screens/HomeScreen';
 import WorkoutsScreen from '@/components/screens/WorkoutsScreen';
 import WorkoutSession from '@/components/screens/WorkoutSession';
 import NutritionScreen from '@/components/screens/NutritionScreen';
 import ProgressScreen from '@/components/screens/ProgressScreen';
 import ProfileScreen from '@/components/screens/ProfileScreen';
+import SettingsScreen from '@/components/screens/SettingsScreen';
 
 export default function Index() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [screen, setScreen] = useState<AppScreen>('home');
   const [activeWorkoutId, setActiveWorkoutId] = useState<string | null>(null);
   const [loaded, setLoaded] = useState(false);
+  const [splashDone, setSplashDone] = useState(false);
 
   useEffect(() => {
     const saved = getProfile();
@@ -24,10 +27,8 @@ export default function Index() {
   }, []);
 
   if (!loaded) return null;
-
-  if (!profile) {
-    return <Onboarding onComplete={p => setProfile(p)} />;
-  }
+  if (!splashDone) return <SplashScreen onComplete={() => setSplashDone(true)} />;
+  if (!profile) return <Onboarding onComplete={p => setProfile(p)} />;
 
   const activeWorkout = activeWorkoutId ? getWorkoutById(activeWorkoutId) : null;
   if (activeWorkout) {
@@ -48,6 +49,7 @@ export default function Index() {
       {screen === 'nutrition' && <NutritionScreen profile={profile} />}
       {screen === 'progress' && <ProgressScreen profile={profile} />}
       {screen === 'profile' && <ProfileScreen profile={profile} onReset={handleReset} />}
+      {screen === 'settings' && <SettingsScreen onReset={handleReset} />}
       <BottomNav active={screen} onChange={setScreen} />
     </div>
   );

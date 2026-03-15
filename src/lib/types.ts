@@ -63,4 +63,4 @@ export interface ProgressEntry {
   workoutsCompleted: number;
 }
 
-export type AppScreen = 'onboarding' | 'home' | 'workouts' | 'nutrition' | 'progress' | 'profile';
+export type AppScreen = 'onboarding' | 'home' | 'workouts' | 'nutrition' | 'progress' | 'profile' | 'settings';
