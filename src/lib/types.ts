@@ -30,6 +30,7 @@ export interface Exercise {
 export interface WorkoutDay {
   id: string;
   name: string;
+  nameKey: string;
   muscleGroups: string[];
   exercises: Exercise[];
   duration: number;
@@ -46,13 +47,13 @@ export interface MealPlan {
 }
 
 export interface Meal {
-  name: string;
+  nameKey: string;
   time: string;
   calories: number;
   protein: number;
   carbs: number;
   fats: number;
-  foods: string[];
+  foodKeys: string[];
 }
 
 export interface ProgressEntry {
