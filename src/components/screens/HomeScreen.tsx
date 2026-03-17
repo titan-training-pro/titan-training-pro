@@ -30,13 +30,8 @@ export default function HomeScreen({ profile, onStartWorkout }: HomeScreenProps)
           { icon: Trophy, value: totalWorkouts, label: t('home.workouts'), color: 'text-warning' },
           { icon: Zap, value: todayCalories, label: t('home.calBurned'), color: 'text-primary' },
         ].map((stat, i) => (
-          <motion.div
-            key={stat.label}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
-            className="bg-card rounded-lg p-3 border border-border text-center"
-          >
+          <motion.div key={stat.label} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.1 }} className="bg-card rounded-lg p-3 border border-border text-center">
             <stat.icon className={`mx-auto mb-1 ${stat.color}`} size={20} />
             <div className="text-2xl font-display">{stat.value}</div>
             <div className="text-[10px] text-muted-foreground uppercase">{stat.label}</div>
@@ -44,18 +39,14 @@ export default function HomeScreen({ profile, onStartWorkout }: HomeScreenProps)
         ))}
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
-        className="bg-card rounded-lg border border-border overflow-hidden mb-6 border-neon"
-      >
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }} className="bg-card rounded-lg border border-border overflow-hidden mb-6 border-neon">
         <div className="p-5">
           <div className="flex items-center gap-2 mb-1">
             <Calendar size={14} className="text-primary" />
             <span className="text-xs text-muted-foreground uppercase font-body">{t('home.todayWorkout')}</span>
           </div>
-          <h2 className="text-3xl font-display mb-1">{todayWorkout.name.toUpperCase()}</h2>
+          <h2 className="text-3xl font-display mb-1">{t(todayWorkout.nameKey).toUpperCase()}</h2>
           <div className="flex gap-4 text-sm text-muted-foreground mb-4">
             <span>{todayWorkout.exercises.length} {t('home.exercises')}</span>
             <span>{todayWorkout.duration} {t('common.min')}</span>
@@ -63,14 +54,11 @@ export default function HomeScreen({ profile, onStartWorkout }: HomeScreenProps)
           </div>
           <div className="flex flex-wrap gap-2 mb-4">
             {todayWorkout.muscleGroups.map(mg => (
-              <span key={mg} className="text-xs px-2 py-1 bg-secondary rounded-full text-muted-foreground">{mg}</span>
+              <span key={mg} className="text-xs px-2 py-1 bg-secondary rounded-full text-muted-foreground">{t(`muscle.${mg}`)}</span>
             ))}
           </div>
-          <motion.button
-            whileTap={{ scale: 0.95 }}
-            onClick={() => onStartWorkout(todayWorkout.id)}
-            className="w-full py-3 gradient-fire rounded-lg font-display text-lg tracking-wider flex items-center justify-center gap-2 glow-red"
-          >
+          <motion.button whileTap={{ scale: 0.95 }} onClick={() => onStartWorkout(todayWorkout.id)}
+            className="w-full py-3 gradient-fire rounded-lg font-display text-lg tracking-wider flex items-center justify-center gap-2 glow-red">
             <Play size={20} fill="currentColor" /> {t('home.startWorkout')}
           </motion.button>
         </div>
@@ -79,16 +67,11 @@ export default function HomeScreen({ profile, onStartWorkout }: HomeScreenProps)
       <h3 className="text-xl font-display mb-3 text-muted-foreground">{t('home.quickAccess')}</h3>
       <div className="space-y-3">
         {gymWorkouts.slice(0, 3).map((w, i) => (
-          <motion.button
-            key={w.id}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4 + i * 0.1 }}
-            onClick={() => onStartWorkout(w.id)}
-            className="w-full bg-card rounded-lg border border-border p-4 flex items-center justify-between text-left hover:border-primary/50 transition-colors"
-          >
+          <motion.button key={w.id} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.4 + i * 0.1 }} onClick={() => onStartWorkout(w.id)}
+            className="w-full bg-card rounded-lg border border-border p-4 flex items-center justify-between text-left hover:border-primary/50 transition-colors">
             <div>
-              <div className="font-display text-lg">{w.name.toUpperCase()}</div>
+              <div className="font-display text-lg">{t(w.nameKey).toUpperCase()}</div>
               <div className="text-xs text-muted-foreground">{w.exercises.length} {t('home.exercises')} • {w.duration} {t('common.min')}</div>
             </div>
             <Play size={18} className="text-primary" />

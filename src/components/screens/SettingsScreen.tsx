@@ -45,10 +45,8 @@ export default function SettingsScreen({ onReset }: SettingsScreenProps) {
     <div className="pb-24 px-4 pt-6">
       <h1 className="text-4xl font-display mb-6">{t('settings.title')}</h1>
 
-      {/* General */}
       <h3 className="text-sm font-display text-muted-foreground mb-3">{t('settings.general')}</h3>
       <div className="bg-card rounded-lg border border-border divide-y divide-border mb-6">
-        {/* Language */}
         <div className="p-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -58,20 +56,16 @@ export default function SettingsScreen({ onReset }: SettingsScreenProps) {
           </div>
           <div className="flex gap-2 mt-3">
             {(['pt', 'en', 'es'] as Language[]).map(l => (
-              <button
-                key={l}
-                onClick={() => setLang(l)}
+              <button key={l} onClick={() => setLang(l)}
                 className={`flex-1 py-2 rounded-lg text-xs font-display transition-all ${
                   lang === l ? 'gradient-fire glow-red' : 'bg-secondary text-muted-foreground'
-                }`}
-              >
+                }`}>
                 {langLabels[l]}
               </button>
             ))}
           </div>
         </div>
 
-        {/* Theme */}
         <div className="p-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             {darkMode ? <Moon size={18} className="text-warning" /> : <Sun size={18} className="text-warning" />}
@@ -83,7 +77,6 @@ export default function SettingsScreen({ onReset }: SettingsScreenProps) {
           <Switch checked={darkMode} onCheckedChange={handleThemeToggle} />
         </div>
 
-        {/* Notifications */}
         <div className="p-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Bell size={18} className="text-primary" />
@@ -96,10 +89,8 @@ export default function SettingsScreen({ onReset }: SettingsScreenProps) {
         </div>
       </div>
 
-      {/* Account */}
       <h3 className="text-sm font-display text-muted-foreground mb-3">{t('settings.account')}</h3>
       <div className="bg-card rounded-lg border border-border divide-y divide-border mb-6">
-        {/* Change Plan */}
         <button onClick={() => setPlanOpen(true)} className="w-full p-4 flex items-center justify-between text-left">
           <div className="flex items-center gap-3">
             <CreditCard size={18} className="text-accent" />
@@ -112,7 +103,6 @@ export default function SettingsScreen({ onReset }: SettingsScreenProps) {
           </div>
         </button>
 
-        {/* Delete Account */}
         <button onClick={() => setDeleteOpen(true)} className="w-full p-4 flex items-center justify-between text-left">
           <div className="flex items-center gap-3">
             <Trash2 size={18} className="text-destructive" />
@@ -124,12 +114,10 @@ export default function SettingsScreen({ onReset }: SettingsScreenProps) {
         </button>
       </div>
 
-      {/* Reset Profile */}
       <button onClick={onReset} className="w-full py-3 border border-border rounded-lg text-muted-foreground font-display text-sm flex items-center justify-center gap-2">
         <LogOut size={16} /> {t('settings.resetProfile')}
       </button>
 
-      {/* Delete Confirmation Dialog */}
       <Dialog open={deleteOpen} onOpenChange={setDeleteOpen}>
         <DialogContent className="max-w-sm">
           <DialogHeader>
@@ -143,32 +131,25 @@ export default function SettingsScreen({ onReset }: SettingsScreenProps) {
         </DialogContent>
       </Dialog>
 
-      {/* Change Plan Dialog */}
       <Dialog open={planOpen} onOpenChange={setPlanOpen}>
         <DialogContent className="max-w-sm">
           <DialogHeader>
             <DialogTitle>{t('settings.changePlan')}</DialogTitle>
           </DialogHeader>
           <div className="space-y-3">
-            <motion.button
-              whileTap={{ scale: 0.97 }}
-              onClick={() => handleChangePlan('free')}
+            <motion.button whileTap={{ scale: 0.97 }} onClick={() => handleChangePlan('free')}
               className={`w-full p-4 rounded-lg border-2 text-left transition-all ${
                 plan === 'free' ? 'border-primary glow-red bg-primary/10' : 'border-border bg-card'
-              }`}
-            >
+              }`}>
               <div className="font-display text-lg">{t('settings.free')}</div>
-              <p className="text-xs text-muted-foreground">Basic workouts & nutrition</p>
+              <p className="text-xs text-muted-foreground">{t('settings.freeDesc')}</p>
             </motion.button>
-            <motion.button
-              whileTap={{ scale: 0.97 }}
-              onClick={() => handleChangePlan('premium')}
+            <motion.button whileTap={{ scale: 0.97 }} onClick={() => handleChangePlan('premium')}
               className={`w-full p-4 rounded-lg border-2 text-left transition-all ${
                 plan === 'premium' ? 'border-accent glow-orange bg-accent/10' : 'border-border bg-card'
-              }`}
-            >
+              }`}>
               <div className="font-display text-lg gradient-fire-text">{t('settings.premium')}</div>
-              <p className="text-xs text-muted-foreground">R$19.90/mês • Full access</p>
+              <p className="text-xs text-muted-foreground">{t('settings.premiumDesc')}</p>
             </motion.button>
           </div>
         </DialogContent>

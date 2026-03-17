@@ -1,8 +1,8 @@
-import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
+import React, { createContext, useContext, useState, useCallback } from 'react';
 
 export type Language = 'pt' | 'en' | 'es';
 
-const translations = {
+const translations: Record<string, Record<Language, string>> = {
   // Navigation
   'nav.home': { pt: 'Início', en: 'Home', es: 'Inicio' },
   'nav.workouts': { pt: 'Treinos', en: 'Workouts', es: 'Entrenos' },
@@ -26,6 +26,7 @@ const translations = {
   'workouts.gym': { pt: 'ACADEMIA', en: 'GYM', es: 'GIMNASIO' },
   'workouts.calisthenics': { pt: 'CALISTENIA', en: 'CALISTHENICS', es: 'CALISTENIA' },
   'workouts.start': { pt: 'INICIAR', en: 'START', es: 'INICIAR' },
+  'workouts.exercises': { pt: 'exercícios', en: 'exercises', es: 'ejercicios' },
 
   // Workout Session
   'session.exercise': { pt: 'Exercício', en: 'Exercise', es: 'Ejercicio' },
@@ -37,7 +38,7 @@ const translations = {
   'session.complete': { pt: 'TREINO COMPLETO!', en: 'WORKOUT COMPLETE!', es: '¡ENTRENO COMPLETO!' },
   'session.backHome': { pt: 'VOLTAR AO INÍCIO', en: 'BACK TO HOME', es: 'VOLVER AL INICIO' },
   'session.details': { pt: 'Detalhes do Exercício', en: 'Exercise Details', es: 'Detalles del Ejercicio' },
-  'session.instructions': { pt: 'INSTRUÇÕES', en: 'INSTRUCTIONS', es: 'INSTRUCCIONES' },
+  'session.instructions': { pt: 'COMO EXECUTAR', en: 'INSTRUCTIONS', es: 'INSTRUCCIONES' },
   'session.mistakes': { pt: 'ERROS COMUNS', en: 'COMMON MISTAKES', es: 'ERRORES COMUNES' },
   'session.muscles': { pt: 'MÚSCULOS TRABALHADOS', en: 'MUSCLES WORKED', es: 'MÚSCULOS TRABAJADOS' },
   'session.set': { pt: 'Série', en: 'Set', es: 'Serie' },
@@ -53,6 +54,32 @@ const translations = {
   'nutrition.protein': { pt: 'Proteína', en: 'Protein', es: 'Proteína' },
   'nutrition.carbs': { pt: 'Carboidratos', en: 'Carbs', es: 'Carbohidratos' },
   'nutrition.fats': { pt: 'Gorduras', en: 'Fats', es: 'Grasas' },
+
+  // Meal names
+  'meal.breakfast': { pt: 'Café da Manhã', en: 'Breakfast', es: 'Desayuno' },
+  'meal.morningSnack': { pt: 'Lanche da Manhã', en: 'Mid-Morning Snack', es: 'Merienda Matutina' },
+  'meal.lunch': { pt: 'Almoço', en: 'Lunch', es: 'Almuerzo' },
+  'meal.preWorkout': { pt: 'Pré-Treino', en: 'Pre-Workout', es: 'Pre-Entreno' },
+  'meal.dinner': { pt: 'Jantar', en: 'Dinner', es: 'Cena' },
+
+  // Foods
+  'food.oatsBanana': { pt: 'Aveia com banana', en: 'Oats with banana', es: 'Avena con plátano' },
+  'food.scrambledEggs': { pt: 'Ovos mexidos (3)', en: 'Scrambled eggs (3)', es: 'Huevos revueltos (3)' },
+  'food.orangeJuice': { pt: 'Suco de laranja', en: 'Orange juice', es: 'Zumo de naranja' },
+  'food.greekYogurt': { pt: 'Iogurte grego', en: 'Greek yogurt', es: 'Yogur griego' },
+  'food.mixedNuts': { pt: 'Mix de castanhas (30g)', en: 'Mixed nuts (30g)', es: 'Frutos secos (30g)' },
+  'food.apple': { pt: 'Maçã', en: 'Apple', es: 'Manzana' },
+  'food.grilledChicken': { pt: 'Frango grelhado (200g)', en: 'Grilled chicken breast (200g)', es: 'Pechuga de pollo a la plancha (200g)' },
+  'food.brownRice': { pt: 'Arroz integral (150g)', en: 'Brown rice (150g)', es: 'Arroz integral (150g)' },
+  'food.mixedVegetables': { pt: 'Legumes variados', en: 'Mixed vegetables', es: 'Verduras variadas' },
+  'food.oliveOil': { pt: 'Fio de azeite', en: 'Olive oil drizzle', es: 'Chorrito de aceite de oliva' },
+  'food.banana': { pt: 'Banana', en: 'Banana', es: 'Plátano' },
+  'food.wheyShake': { pt: 'Shake de whey protein', en: 'Whey protein shake', es: 'Batido de whey protein' },
+  'food.riceCake': { pt: 'Biscoito de arroz', en: 'Rice cake', es: 'Tortita de arroz' },
+  'food.salmon': { pt: 'Filé de salmão (200g)', en: 'Salmon fillet (200g)', es: 'Filete de salmón (200g)' },
+  'food.sweetPotato': { pt: 'Batata-doce (150g)', en: 'Sweet potato (150g)', es: 'Boniato (150g)' },
+  'food.broccoli': { pt: 'Brócolis no vapor', en: 'Steamed broccoli', es: 'Brócoli al vapor' },
+  'food.avocado': { pt: 'Abacate (meio)', en: 'Avocado (half)', es: 'Aguacate (medio)' },
 
   // Progress
   'progress.title': { pt: 'PROGRESSO', en: 'PROGRESS', es: 'PROGRESO' },
@@ -82,6 +109,10 @@ const translations = {
   'profile.upgradeNow': { pt: 'ASSINAR AGORA', en: 'UPGRADE NOW', es: 'SUSCRIBIRSE' },
   'profile.resetProfile': { pt: 'RESETAR PERFIL', en: 'RESET PROFILE', es: 'REINICIAR PERFIL' },
   'profile.years': { pt: 'anos', en: 'years', es: 'años' },
+  'profile.workouts': { pt: 'Treinos', en: 'Workouts', es: 'Entrenos' },
+  'profile.dayStreak': { pt: 'Sequência', en: 'Day Streak', es: 'Racha' },
+  'profile.month': { pt: '/mês', en: '/month', es: '/mes' },
+  'profile.yearSave': { pt: 'ou R$97/ano (economize 59%)', en: 'or R$97/year (save 59%)', es: 'o R$97/año (ahorre 59%)' },
 
   // Settings
   'settings.title': { pt: 'CONFIGURAÇÕES', en: 'SETTINGS', es: 'AJUSTES' },
@@ -103,6 +134,8 @@ const translations = {
   'settings.confirm': { pt: 'Confirmar', en: 'Confirm', es: 'Confirmar' },
   'settings.general': { pt: 'GERAL', en: 'GENERAL', es: 'GENERAL' },
   'settings.resetProfile': { pt: 'RESETAR PERFIL', en: 'RESET PROFILE', es: 'REINICIAR PERFIL' },
+  'settings.freeDesc': { pt: 'Treinos básicos e nutrição', en: 'Basic workouts & nutrition', es: 'Entrenos básicos y nutrición' },
+  'settings.premiumDesc': { pt: 'R$19.90/mês • Acesso completo', en: 'R$19.90/month • Full access', es: 'R$19.90/mes • Acceso completo' },
 
   // Onboarding
   'onboarding.getStarted': { pt: 'COMEÇAR', en: 'GET STARTED', es: 'COMENZAR' },
@@ -152,14 +185,66 @@ const translations = {
   'goal.conditioning': { pt: 'Condicionamento', en: 'Conditioning', es: 'Acondicionamiento' },
   'goal.transformation': { pt: 'Transformação', en: 'Transformation', es: 'Transformación' },
 
+  // Gender
+  'gender.male': { pt: 'Masculino', en: 'Male', es: 'Masculino' },
+  'gender.female': { pt: 'Feminino', en: 'Female', es: 'Femenino' },
+
+  // Levels
+  'level.beginner': { pt: 'Iniciante', en: 'Beginner', es: 'Principiante' },
+  'level.intermediate': { pt: 'Intermediário', en: 'Intermediate', es: 'Intermedio' },
+  'level.advanced': { pt: 'Avançado', en: 'Advanced', es: 'Avanzado' },
+
+  // Body types
+  'bodyType.ectomorph': { pt: 'Ectomorfo', en: 'Ectomorph', es: 'Ectomorfo' },
+  'bodyType.mesomorph': { pt: 'Mesomorfo', en: 'Mesomorph', es: 'Mesomorfo' },
+  'bodyType.endomorph': { pt: 'Endomorfo', en: 'Endomorph', es: 'Endomorfo' },
+
+  // Muscle groups
+  'muscle.Chest': { pt: 'Peito', en: 'Chest', es: 'Pecho' },
+  'muscle.Back': { pt: 'Costas', en: 'Back', es: 'Espalda' },
+  'muscle.Shoulders': { pt: 'Ombros', en: 'Shoulders', es: 'Hombros' },
+  'muscle.Arms': { pt: 'Braços', en: 'Arms', es: 'Brazos' },
+  'muscle.Biceps': { pt: 'Bíceps', en: 'Biceps', es: 'Bíceps' },
+  'muscle.Triceps': { pt: 'Tríceps', en: 'Triceps', es: 'Tríceps' },
+  'muscle.Legs': { pt: 'Pernas', en: 'Legs', es: 'Piernas' },
+  'muscle.Glutes': { pt: 'Glúteos', en: 'Glutes', es: 'Glúteos' },
+  'muscle.Abs': { pt: 'Abdômen', en: 'Abs', es: 'Abdominales' },
+  'muscle.Core': { pt: 'Core', en: 'Core', es: 'Core' },
+  'muscle.Full Body': { pt: 'Corpo Inteiro', en: 'Full Body', es: 'Cuerpo Completo' },
+
+  // Workout names
+  'workout.pushDay': { pt: 'Dia de Empurrar', en: 'Push Day', es: 'Día de Empuje' },
+  'workout.pullDay': { pt: 'Dia de Puxar', en: 'Pull Day', es: 'Día de Tirón' },
+  'workout.legDay': { pt: 'Dia de Pernas', en: 'Leg Day', es: 'Día de Piernas' },
+  'workout.upperBody': { pt: 'Parte Superior', en: 'Upper Body', es: 'Tren Superior' },
+  'workout.coreBlast': { pt: 'Treino de Core', en: 'Core Blast', es: 'Entreno de Core' },
+  'workout.chestBack': { pt: 'Peito & Costas', en: 'Chest & Back', es: 'Pecho & Espalda' },
+  'workout.shouldersArms': { pt: 'Ombros & Braços', en: 'Shoulders & Arms', es: 'Hombros & Brazos' },
+  'workout.fullBody': { pt: 'Corpo Inteiro', en: 'Full Body', es: 'Cuerpo Completo' },
+  'workout.caliUpper': { pt: 'Calistenia Superior', en: 'Upper Body Calisthenics', es: 'Calistenia Superior' },
+  'workout.caliAdvanced': { pt: 'Habilidades Avançadas', en: 'Advanced Skills', es: 'Habilidades Avanzadas' },
+  'workout.caliCore': { pt: 'Core Calistenia', en: 'Calisthenics Core', es: 'Core Calistenia' },
+  'workout.caliLower': { pt: 'Calistenia Inferior', en: 'Lower Body Calisthenics', es: 'Calistenia Inferior' },
+  'workout.glutesFocus': { pt: 'Foco em Glúteos', en: 'Glutes Focus', es: 'Enfoque en Glúteos' },
+
+  // Difficulty
+  'difficulty.Beginner': { pt: 'Iniciante', en: 'Beginner', es: 'Principiante' },
+  'difficulty.Intermediate': { pt: 'Intermediário', en: 'Intermediate', es: 'Intermedio' },
+  'difficulty.Advanced': { pt: 'Avançado', en: 'Advanced', es: 'Avanzado' },
+
   // Common
   'common.min': { pt: 'min', en: 'min', es: 'min' },
   'common.cal': { pt: 'cal', en: 'cal', es: 'cal' },
   'common.finished': { pt: 'finalizado', en: 'finished', es: 'finalizado' },
   'common.caloriesBurned': { pt: 'calorias queimadas', en: 'calories burned', es: 'calorías quemadas' },
-} as const;
+  'common.videoComingSoon': { pt: 'Vídeo em breve', en: 'Video coming soon', es: 'Vídeo próximamente' },
+  'common.videoDemo': { pt: 'Demonstração', en: 'Video Demo', es: 'Demostración' },
 
-type TranslationKey = keyof typeof translations;
+  // Splash
+  'splash.tagline': { pt: 'LIBERTE SEU PODER', en: 'UNLEASH YOUR POWER', es: 'LIBERA TU PODER' },
+};
+
+type TranslationKey = string;
 
 interface I18nContextType {
   lang: Language;
