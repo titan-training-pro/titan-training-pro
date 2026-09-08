@@ -144,29 +144,6 @@ export default function WorkoutSession({ workout, onClose }: WorkoutSessionProps
       <div className="px-4 pt-6 pb-24">
         <AnimatePresence mode="wait">
           <motion.div key={exercise.id} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }}>
-            {/* Video Preview */}
-            <button onClick={() => setShowVideo(true)} className="w-full bg-card rounded-lg border border-border aspect-video flex items-center justify-center mb-4 relative overflow-hidden group">
-              {exercise.videoUrl ? (
-                <>
-                  <video src={exercise.videoUrl} muted playsInline loop autoPlay className="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="bg-primary/80 rounded-full p-3">
-                      <Play size={24} fill="currentColor" />
-                    </div>
-                  </div>
-                  <div className="absolute bottom-2 left-2 flex gap-1">
-                    <span className="text-[10px] px-2 py-0.5 bg-primary/80 rounded font-display">{t('session.watchVideo')}</span>
-                    <span className="text-[10px] px-2 py-0.5 bg-accent/80 rounded font-display">{t('session.anatomy')}</span>
-                  </div>
-                </>
-              ) : (
-                <div className="text-center">
-                  <div className="text-4xl mb-2">🎬</div>
-                  <p className="text-xs text-muted-foreground">Video Demo</p>
-                </div>
-              )}
-            </button>
-
             <h2 className="text-3xl font-display mb-1">{exercise.name.toUpperCase()}</h2>
             <p className="text-sm text-muted-foreground mb-4">{exercise.description}</p>
 
