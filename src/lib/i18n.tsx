@@ -20,6 +20,21 @@ const translations: Record<string, Record<Language, string>> = {
   'home.exercises': { pt: 'exercícios', en: 'exercises', es: 'ejercicios' },
   'home.startWorkout': { pt: 'INICIAR TREINO', en: 'START WORKOUT', es: 'INICIAR ENTRENO' },
   'home.quickAccess': { pt: 'ACESSO RÁPIDO', en: 'QUICK ACCESS', es: 'ACCESO RÁPIDO' },
+  'home.yourWorkout': { pt: 'SEU TREINO', en: 'YOUR WORKOUT', es: 'TU ENTRENO' },
+  'home.week': { pt: 'SEMANA', en: 'WEEK', es: 'SEMANA' },
+  'home.day': { pt: 'DIA', en: 'DAY', es: 'DÍA' },
+  'home.seeExercises': { pt: 'VER EXERCÍCIOS', en: 'SEE EXERCISES', es: 'VER EJERCICIOS' },
+  'home.weekProgress': { pt: 'Progresso semanal', en: 'Weekly progress', es: 'Progreso semanal' },
+
+  // Gamification
+  'gamify.title': { pt: 'PONTOS DE FORÇA', en: 'STRENGTH POINTS', es: 'PUNTOS DE FUERZA' },
+  'gamify.points': { pt: 'pontos', en: 'points', es: 'puntos' },
+  'gamify.nextLevel': { pt: 'para o próximo nível', en: 'to next level', es: 'para el siguiente nivel' },
+  'rank.recruit': { pt: 'RECRUTA', en: 'RECRUIT', es: 'RECLUTA' },
+  'rank.warrior': { pt: 'GUERREIRO', en: 'WARRIOR', es: 'GUERRERO' },
+  'rank.elite': { pt: 'ELITE', en: 'ELITE', es: 'ELITE' },
+  'rank.spartan': { pt: 'ESPARTANO', en: 'SPARTAN', es: 'ESPARTANO' },
+  'rank.legendary': { pt: 'LENDÁRIO', en: 'LEGENDARY', es: 'LEGENDARIO' },
 
   // Workouts
   'workouts.title': { pt: 'TREINOS', en: 'WORKOUTS', es: 'ENTRENOS' },

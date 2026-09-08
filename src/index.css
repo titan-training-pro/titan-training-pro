@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,45 +6,68 @@
 
 @layer base {
   :root {
-    --background: 0 0% 4.3%;
-    --foreground: 0 0% 100%;
+    /* Athletic vintage + spartan premium palette */
+    --background: 40 33% 96%;        /* #FAF7F1 warm white */
+    --foreground: 0 4% 8%;           /* #151313 charcoal */
 
-    --card: 0 0% 7.1%;
-    --card-foreground: 0 0% 100%;
+    --card: 40 38% 93%;              /* #F3EEE5 cream */
+    --card-foreground: 0 4% 8%;
 
-    --popover: 0 0% 7.1%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 40 38% 93%;
+    --popover-foreground: 0 4% 8%;
 
-    --primary: 357 91% 46%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 10 42% 51%;           /* #B85F4D burnt red */
+    --primary-foreground: 40 33% 96%;
 
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 38 20% 86%;         /* soft ivory surface */
+    --secondary-foreground: 0 4% 8%;
 
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 63%;
+    --muted: 38 18% 88%;
+    --muted-foreground: 40 5% 45%;   /* #77736D stone */
 
-    --accent: 24 100% 50%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 33 32% 41%;            /* #8A6A45 bronze */
+    --accent-foreground: 40 33% 96%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 10 52% 45%;
+    --destructive-foreground: 40 33% 96%;
 
-    --border: 0 0% 12%;
-    --input: 0 0% 12%;
-    --ring: 357 91% 46%;
+    --border: 38 16% 82%;
+    --input: 38 16% 82%;
+    --ring: 10 42% 51%;
 
-    --radius: 0.75rem;
+    --radius: 1.5rem;
 
-    --warning: 45 100% 51%;
-    --warning-foreground: 0 0% 0%;
+    --warning: 33 32% 41%;
+    --warning-foreground: 40 33% 96%;
 
-    --surface: 0 0% 7.1%;
-    --surface-border: 0 0% 12%;
+    --surface: 40 38% 93%;
+    --surface-border: 38 16% 82%;
 
-    --neon-red: 357 91% 46%;
-    --neon-orange: 24 100% 50%;
-    --neon-yellow: 45 100% 51%;
+    --ivory: 37 21% 80%;             /* #D8D0C2 */
+    --bronze: 33 32% 41%;
+    --stone: 40 5% 45%;
+    --charcoal: 0 4% 8%;
+  }
+
+  .dark {
+    --background: 0 4% 8%;
+    --foreground: 40 33% 96%;
+    --card: 0 4% 11%;
+    --card-foreground: 40 33% 96%;
+    --popover: 0 4% 11%;
+    --popover-foreground: 40 33% 96%;
+    --primary: 10 45% 55%;
+    --primary-foreground: 40 33% 96%;
+    --secondary: 0 4% 15%;
+    --secondary-foreground: 40 33% 96%;
+    --muted: 0 4% 15%;
+    --muted-foreground: 37 12% 68%;
+    --accent: 33 36% 50%;
+    --accent-foreground: 0 4% 8%;
+    --border: 0 4% 18%;
+    --input: 0 4% 18%;
+    --surface: 0 4% 11%;
+    --surface-border: 0 4% 18%;
   }
 }
 
@@ -56,33 +79,53 @@
     @apply bg-background text-foreground font-body antialiased;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display uppercase tracking-wide;
+    @apply font-display uppercase tracking-tight;
   }
 }
 
 @layer utilities {
-  .glow-red {
-    box-shadow: 0 0 20px hsl(357 91% 46% / 0.3), 0 0 40px hsl(357 91% 46% / 0.1);
+  /* Athletic surfaces */
+  .surface-card {
+    @apply bg-card border border-border rounded-3xl;
+    box-shadow: 0 1px 2px hsl(var(--charcoal) / 0.04), 0 8px 24px -18px hsl(var(--charcoal) / 0.35);
   }
-  .glow-orange {
-    box-shadow: 0 0 20px hsl(24 100% 50% / 0.3), 0 0 40px hsl(24 100% 50% / 0.1);
-  }
-  .glow-yellow {
-    box-shadow: 0 0 20px hsl(45 100% 51% / 0.3);
-  }
-  .border-neon {
-    border-bottom: 2px solid hsl(357 91% 46%);
+  .surface-dark {
+    background: hsl(var(--charcoal));
+    color: hsl(var(--background));
   }
   .gradient-fire {
-    background: linear-gradient(135deg, hsl(357 91% 46%), hsl(24 100% 50%));
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(10 45% 42%));
+    color: hsl(var(--primary-foreground));
+  }
+  .gradient-bronze {
+    background: linear-gradient(135deg, hsl(var(--bronze)), hsl(33 34% 32%));
+    color: hsl(var(--background));
   }
   .gradient-fire-text {
-    background: linear-gradient(135deg, hsl(357 91% 46%), hsl(24 100% 50%));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: hsl(var(--primary));
+  }
+  .glow-red {
+    box-shadow: 0 10px 24px -14px hsl(var(--primary) / 0.75);
+  }
+  .glow-orange,
+  .glow-yellow {
+    box-shadow: 0 10px 24px -14px hsl(var(--bronze) / 0.6);
+  }
+  .border-neon {
+    border-bottom: 3px solid hsl(var(--primary));
   }
   .text-shadow-glow {
-    text-shadow: 0 0 20px hsl(357 91% 46% / 0.5);
+    text-shadow: none;
+  }
+  .varsity {
+    @apply font-display uppercase;
+    letter-spacing: -0.01em;
+  }
+  .eyebrow {
+    @apply font-body text-[11px] uppercase tracking-[0.18em] text-muted-foreground font-semibold;
+  }
+  .rule-athletic {
+    background-image: repeating-linear-gradient(90deg, hsl(var(--bronze) / 0.5) 0 10px, transparent 10px 16px);
+    height: 2px;
   }
 }
