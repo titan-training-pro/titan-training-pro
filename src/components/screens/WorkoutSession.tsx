@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Check, Timer, SkipForward, ChevronDown, ChevronUp, Play, X } from 'lucide-react';
+import { ArrowLeft, Check, Timer, SkipForward, ChevronDown, ChevronUp } from 'lucide-react';
 import { WorkoutDay, Exercise } from '@/lib/types';
 import { markWorkoutComplete } from '@/lib/store';
 import { useI18n } from '@/lib/i18n';
@@ -18,7 +18,6 @@ export default function WorkoutSession({ workout, onClose }: WorkoutSessionProps
   const [restTime, setRestTime] = useState(0);
   const [expanded, setExpanded] = useState(false);
   const [completed, setCompleted] = useState(false);
-  const [showVideo, setShowVideo] = useState(false);
 
   const exercise = workout.exercises[currentIdx];
   const isLast = currentIdx === workout.exercises.length - 1;
@@ -42,7 +41,6 @@ export default function WorkoutSession({ workout, onClose }: WorkoutSessionProps
       setCurrentIdx(currentIdx + 1);
       setCurrentSet(1);
       setExpanded(false);
-      setShowVideo(false);
     } else {
       markWorkoutComplete(workout.id);
       setCompleted(true);
