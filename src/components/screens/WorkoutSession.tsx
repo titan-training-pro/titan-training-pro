@@ -98,47 +98,6 @@ export default function WorkoutSession({ workout, onClose }: WorkoutSessionProps
         )}
       </AnimatePresence>
 
-      {/* Video Modal */}
-      <AnimatePresence>
-        {showVideo && (
-          <motion.div
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-background/95 flex flex-col items-center justify-center p-4"
-          >
-            <div className="w-full max-w-lg">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="font-display text-xl">{exercise.name.toUpperCase()}</h3>
-                <button onClick={() => setShowVideo(false)} className="text-muted-foreground"><X size={24} /></button>
-              </div>
-              {exercise.videoUrl ? (
-                <video
-                  src={exercise.videoUrl}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  controls
-                  className="w-full rounded-lg border border-border"
-                />
-              ) : (
-                <div className="aspect-video bg-card rounded-lg border border-border flex items-center justify-center">
-                  <p className="text-muted-foreground text-sm">Video coming soon</p>
-                </div>
-              )}
-              <div className="mt-4 bg-card rounded-lg border border-border p-4">
-                <h4 className="font-display text-sm mb-2 text-warning">{t('session.muscles')}</h4>
-                <div className="flex flex-wrap gap-2">
-                  {exercise.musclesWorked.map((m, i) => (
-                    <span key={m} className={`text-xs px-2 py-1 rounded-full ${i === 0 ? 'bg-primary/20 text-primary' : 'bg-accent/20 text-accent'}`}>
-                      {i === 0 ? '●' : '○'} {m}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Exercise Content */}
       <div className="px-4 pt-6 pb-24">
