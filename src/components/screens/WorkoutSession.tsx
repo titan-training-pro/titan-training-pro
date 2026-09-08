@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Check, Timer, SkipForward, ChevronDown, ChevronUp, Play, X } from 'lucide-react';
+import { ArrowLeft, Check, Timer, SkipForward, ChevronDown, ChevronUp } from 'lucide-react';
 import { WorkoutDay, Exercise } from '@/lib/types';
 import { markWorkoutComplete } from '@/lib/store';
 import { useI18n } from '@/lib/i18n';
@@ -18,7 +18,6 @@ export default function WorkoutSession({ workout, onClose }: WorkoutSessionProps
   const [restTime, setRestTime] = useState(0);
   const [expanded, setExpanded] = useState(false);
   const [completed, setCompleted] = useState(false);
-  const [showVideo, setShowVideo] = useState(false);
 
   const exercise = workout.exercises[currentIdx];
   const isLast = currentIdx === workout.exercises.length - 1;
@@ -42,7 +41,6 @@ export default function WorkoutSession({ workout, onClose }: WorkoutSessionProps
       setCurrentIdx(currentIdx + 1);
       setCurrentSet(1);
       setExpanded(false);
-      setShowVideo(false);
     } else {
       markWorkoutComplete(workout.id);
       setCompleted(true);
@@ -98,75 +96,11 @@ export default function WorkoutSession({ workout, onClose }: WorkoutSessionProps
         )}
       </AnimatePresence>
 
-      {/* Video Modal */}
-      <AnimatePresence>
-        {showVideo && (
-          <motion.div
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-background/95 flex flex-col items-center justify-center p-4"
-          >
-            <div className="w-full max-w-lg">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="font-display text-xl">{exercise.name.toUpperCase()}</h3>
-                <button onClick={() => setShowVideo(false)} className="text-muted-foreground"><X size={24} /></button>
-              </div>
-              {exercise.videoUrl ? (
-                <video
-                  src={exercise.videoUrl}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  controls
-                  className="w-full rounded-lg border border-border"
-                />
-              ) : (
-                <div className="aspect-video bg-card rounded-lg border border-border flex items-center justify-center">
-                  <p className="text-muted-foreground text-sm">Video coming soon</p>
-                </div>
-              )}
-              <div className="mt-4 bg-card rounded-lg border border-border p-4">
-                <h4 className="font-display text-sm mb-2 text-warning">{t('session.muscles')}</h4>
-                <div className="flex flex-wrap gap-2">
-                  {exercise.musclesWorked.map((m, i) => (
-                    <span key={m} className={`text-xs px-2 py-1 rounded-full ${i === 0 ? 'bg-primary/20 text-primary' : 'bg-accent/20 text-accent'}`}>
-                      {i === 0 ? '●' : '○'} {m}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Exercise Content */}
       <div className="px-4 pt-6 pb-24">
         <AnimatePresence mode="wait">
           <motion.div key={exercise.id} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }}>
-            {/* Video Preview */}
-            <button onClick={() => setShowVideo(true)} className="w-full bg-card rounded-lg border border-border aspect-video flex items-center justify-center mb-4 relative overflow-hidden group">
-              {exercise.videoUrl ? (
-                <>
-                  <video src={exercise.videoUrl} muted playsInline loop autoPlay className="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="bg-primary/80 rounded-full p-3">
-                      <Play size={24} fill="currentColor" />
-                    </div>
-                  </div>
-                  <div className="absolute bottom-2 left-2 flex gap-1">
-                    <span className="text-[10px] px-2 py-0.5 bg-primary/80 rounded font-display">{t('session.watchVideo')}</span>
-                    <span className="text-[10px] px-2 py-0.5 bg-accent/80 rounded font-display">{t('session.anatomy')}</span>
-                  </div>
-                </>
-              ) : (
-                <div className="text-center">
-                  <div className="text-4xl mb-2">🎬</div>
-                  <p className="text-xs text-muted-foreground">Video Demo</p>
-                </div>
-              )}
-            </button>
-
             <h2 className="text-3xl font-display mb-1">{exercise.name.toUpperCase()}</h2>
             <p className="text-sm text-muted-foreground mb-4">{exercise.description}</p>
 
