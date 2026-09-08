@@ -1,4 +1,5 @@
 import { Home, Dumbbell, Apple, TrendingUp, User, Settings } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { AppScreen } from '@/lib/types';
 import { useI18n } from '@/lib/i18n';
 
@@ -9,7 +10,7 @@ interface BottomNavProps {
 
 export default function BottomNav({ active, onChange }: BottomNavProps) {
   const { t } = useI18n();
-  
+
   const tabs: { key: AppScreen; label: string; icon: React.ElementType }[] = [
     { key: 'home', label: t('nav.home'), icon: Home },
     { key: 'workouts', label: t('nav.workouts'), icon: Dumbbell },
@@ -20,23 +21,29 @@ export default function BottomNav({ active, onChange }: BottomNavProps) {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-card border-t border-border backdrop-blur-lg bg-opacity-95">
-      <div className="flex justify-around items-center h-16 max-w-lg mx-auto">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-background/90 backdrop-blur-xl pb-[env(safe-area-inset-bottom)]">
+      <div className="flex justify-around items-stretch h-[68px] max-w-lg mx-auto px-1">
         {tabs.map(({ key, label, icon: Icon }) => {
           const isActive = active === key;
           return (
             <button
               key={key}
               onClick={() => onChange(key)}
-              className={`flex flex-col items-center gap-0.5 p-2 transition-colors ${
+              className={`relative flex-1 min-w-0 flex flex-col items-center justify-center gap-1 transition-colors ${
                 isActive ? 'text-primary' : 'text-muted-foreground'
               }`}
             >
-              <Icon size={20} strokeWidth={isActive ? 2.5 : 1.5} />
-              <span className="text-[9px] font-body font-medium">{label}</span>
               {isActive && (
-                <div className="absolute bottom-0 w-6 h-0.5 gradient-fire rounded-full" />
+                <motion.span
+                  layoutId="nav-pill"
+                  className="absolute inset-x-1 inset-y-2 rounded-2xl bg-primary/10"
+                  transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                />
               )}
+              <Icon size={19} strokeWidth={isActive ? 2.4 : 1.7} className="relative" />
+              <span className="relative text-[9px] font-body font-semibold uppercase tracking-[0.08em] truncate">
+                {label}
+              </span>
             </button>
           );
         })}
