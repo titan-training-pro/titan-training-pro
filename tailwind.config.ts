@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['"Bebas Neue"', 'sans-serif'],
-        body: ['"Inter"', 'sans-serif'],
+        display: ['"Roboto Slab"', 'Georgia', 'serif'],
+        body: ['"Manrope"', 'Inter', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -59,16 +59,15 @@ export default {
           DEFAULT: "hsl(var(--surface))",
           border: "hsl(var(--surface-border))",
         },
-        neon: {
-          red: "hsl(var(--neon-red))",
-          orange: "hsl(var(--neon-orange))",
-          yellow: "hsl(var(--neon-yellow))",
-        },
+        bronze: "hsl(var(--bronze))",
+        ivory: "hsl(var(--ivory))",
+        stone: "hsl(var(--stone))",
+        charcoal: "hsl(var(--charcoal))",
       },
       borderRadius: {
         lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        md: "calc(var(--radius) - 8px)",
+        sm: "calc(var(--radius) - 14px)",
       },
       keyframes: {
         "accordion-down": {
