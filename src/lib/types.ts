@@ -9,6 +9,16 @@ export interface UserProfile {
   name: string;
 }
 
+export type ExerciseCategory = 'gym' | 'bodyweight' | 'stretching';
+
+export interface ExerciseTranslation {
+  name: string;
+  description: string;
+  instructions: string[];
+  commonMistakes: string[];
+  musclesWorked: string[];
+}
+
 export interface Exercise {
   id: string;
   name: string;
@@ -16,6 +26,9 @@ export interface Exercise {
   equipment: string;
   level: 'beginner' | 'intermediate' | 'advanced';
   type: 'gym' | 'calisthenics';
+  /** Training niche: weights/gym, bodyweight or stretching & mobility. */
+  category?: ExerciseCategory;
+  videoUrl?: string;
   description: string;
   instructions: string[];
   commonMistakes: string[];
@@ -23,6 +36,7 @@ export interface Exercise {
   sets: number;
   reps: string;
   restSeconds: number;
+  translations?: Partial<Record<'pt' | 'es', ExerciseTranslation>>;
 }
 
 export interface WorkoutDay {

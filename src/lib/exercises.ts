@@ -1,4 +1,5 @@
 import { Exercise } from './types';
+import { videoExercises } from './videoExercises';
 
 export const exercises: Exercise[] = [
   // ===== CHEST - GYM (14 exercises) =====
@@ -133,7 +134,12 @@ export const exercises: Exercise[] = [
   { id: 'jump-squat', name: 'Jump Squat', muscleGroup: 'Legs', equipment: 'None', level: 'intermediate', type: 'calisthenics', description: 'Plyometric squat for explosive power.', instructions: ['Squat down to parallel', 'Explode upward jumping', 'Land softly on balls of feet', 'Immediately descend into next rep'], commonMistakes: ['Landing hard', 'Shallow squat', 'Knees caving'], musclesWorked: ['Quadriceps', 'Glutes', 'Calves'], sets: 3, reps: '12-15', restSeconds: 60 },
   { id: 'wall-sit', name: 'Wall Sit', muscleGroup: 'Legs', equipment: 'None', level: 'beginner', type: 'calisthenics', description: 'Isometric quad endurance exercise.', instructions: ['Back flat against wall', 'Slide down to 90-degree knee angle', 'Hold position', 'Keep back pressed to wall'], commonMistakes: ['Not deep enough', 'Leaning forward', 'Hands on thighs'], musclesWorked: ['Quadriceps', 'Glutes'], sets: 3, reps: '30-60s hold', restSeconds: 45 },
   { id: 'bear-crawl', name: 'Bear Crawl', muscleGroup: 'Full Body', equipment: 'None', level: 'beginner', type: 'calisthenics', description: 'Functional movement for core and coordination.', instructions: ['On all fours, knees hovering', 'Move opposite hand and foot forward', 'Keep hips low and stable', 'Alternate sides'], commonMistakes: ['Hips too high', 'Not coordinating limbs', 'Moving too fast'], musclesWorked: ['Core', 'Shoulders', 'Quadriceps'], sets: 3, reps: '30s', restSeconds: 45 },
+  ...videoExercises,
 ];
+
+export const getExercisesByCategory = (category: 'gym' | 'bodyweight' | 'stretching') =>
+  exercises.filter(e => (e.category ?? (e.type === 'gym' ? 'gym' : 'bodyweight')) === category);
+export const exercisesWithVideo = () => exercises.filter(e => !!e.videoUrl);
 
 export const getExercisesByMuscleGroup = (group: string) => exercises.filter(e => e.muscleGroup === group);
 export const getExercisesByType = (type: 'gym' | 'calisthenics') => exercises.filter(e => e.type === type);
