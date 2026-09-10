@@ -40,6 +40,8 @@ const translations: Record<string, Record<Language, string>> = {
   'workouts.title': { pt: 'TREINOS', en: 'WORKOUTS', es: 'ENTRENOS' },
   'workouts.gym': { pt: 'ACADEMIA', en: 'GYM', es: 'GIMNASIO' },
   'workouts.calisthenics': { pt: 'CALISTENIA', en: 'CALISTHENICS', es: 'CALISTENIA' },
+  'workouts.bodyweight': { pt: 'PESO CORPORAL', en: 'BODYWEIGHT', es: 'PESO CORPORAL' },
+  'workouts.stretching': { pt: 'ALONGAMENTO', en: 'STRETCHING', es: 'ESTIRAMIENTO' },
   'workouts.start': { pt: 'INICIAR', en: 'START', es: 'INICIAR' },
   'workouts.exercises': { pt: 'exercícios', en: 'exercises', es: 'ejercicios' },
 
@@ -241,6 +243,12 @@ const translations: Record<string, Record<Language, string>> = {
   'workout.caliCore': { pt: 'Core Calistenia', en: 'Calisthenics Core', es: 'Core Calistenia' },
   'workout.caliLower': { pt: 'Calistenia Inferior', en: 'Lower Body Calisthenics', es: 'Calistenia Inferior' },
   'workout.glutesFocus': { pt: 'Foco em Glúteos', en: 'Glutes Focus', es: 'Enfoque en Glúteos' },
+  'workout.homeCore': { pt: 'Core em Casa', en: 'Home Core', es: 'Core en Casa' },
+  'workout.chairWorkout': { pt: 'Treino na Cadeira', en: 'Chair Workout', es: 'Entreno en Silla' },
+  'workout.noEquipment': { pt: 'Corpo Inteiro sem Equipamento', en: 'No Equipment Full Body', es: 'Cuerpo Completo sin Equipo' },
+  'workout.mobilityFlow': { pt: 'Fluxo de Mobilidade', en: 'Mobility Flow', es: 'Flujo de Movilidad' },
+  'workout.postureReset': { pt: 'Reset de Postura', en: 'Posture Reset', es: 'Reinicio Postural' },
+  'workout.lowerStretch': { pt: 'Alongamento Inferior', en: 'Lower Body Stretch', es: 'Estiramiento Inferior' },
 
   // Difficulty
   'difficulty.Beginner': { pt: 'Iniciante', en: 'Beginner', es: 'Principiante' },
