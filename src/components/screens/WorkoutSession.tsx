@@ -105,6 +105,21 @@ export default function WorkoutSession({ workout, onClose }: WorkoutSessionProps
             <h2 className="text-3xl font-display mb-1">{exercise.name.toUpperCase()}</h2>
             <p className="text-sm text-muted-foreground mb-4">{exercise.description}</p>
 
+            {exercise.videoUrl && (
+              <div className="mb-4 rounded-lg overflow-hidden border border-border bg-card">
+                <video
+                  key={exercise.videoUrl}
+                  src={exercise.videoUrl}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  controls
+                  className="w-full aspect-video object-cover bg-secondary"
+                />
+              </div>
+            )}
+
             {/* Sets indicator */}
             <div className="flex gap-2 mb-4">
               {Array.from({ length: exercise.sets }).map((_, i) => (
