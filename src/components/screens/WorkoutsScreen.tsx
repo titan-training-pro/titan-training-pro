@@ -26,16 +26,18 @@ export default function WorkoutsScreen({ onStartWorkout }: WorkoutsScreenProps) 
       <p className="eyebrow">Titan Training</p>
       <h1 className="font-display text-[40px] leading-[0.95] mb-5">{t('workouts.title')}</h1>
 
-      <div className="flex gap-2 p-1 rounded-full bg-secondary mb-6">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 p-1 rounded-2xl bg-secondary mb-6">
         {[
           { key: 'gym' as const, labelKey: 'workouts.gym', icon: Dumbbell },
-          { key: 'calisthenics' as const, labelKey: 'workouts.calisthenics', icon: StretchHorizontal },
+          { key: 'calisthenics' as const, labelKey: 'workouts.calisthenics', icon: PersonStanding },
+          { key: 'bodyweight' as const, labelKey: 'workouts.bodyweight', icon: Activity },
+          { key: 'stretching' as const, labelKey: 'workouts.stretching', icon: StretchHorizontal },
         ].map(item => (
           <button key={item.key} onClick={() => setTab(item.key)}
-            className={`flex-1 py-2.5 rounded-full font-display text-sm tracking-wide flex items-center justify-center gap-2 transition-all ${
+            className={`py-2.5 px-2 rounded-xl font-display text-[11px] sm:text-xs tracking-wide flex items-center justify-center gap-1.5 transition-all ${
               tab === item.key ? 'bg-primary text-primary-foreground' : 'text-muted-foreground'
             }`}>
-            <item.icon size={15} /> {t(item.labelKey)}
+            <item.icon size={14} /> {t(item.labelKey)}
           </button>
         ))}
       </div>

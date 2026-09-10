@@ -1,9 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Check, Timer, SkipForward, ChevronDown, ChevronUp } from 'lucide-react';
-import { WorkoutDay, Exercise } from '@/lib/types';
+import { WorkoutDay } from '@/lib/types';
 import { markWorkoutComplete } from '@/lib/store';
 import { useI18n } from '@/lib/i18n';
+import { localizeExercise } from '@/lib/exerciseI18n';
 
 interface WorkoutSessionProps {
   workout: WorkoutDay;
