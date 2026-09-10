@@ -9,6 +9,13 @@ import legRaiseChair from '@/assets/videos/seated-extended-leg-raise-on-a-chair.
 import hipKneeRaise from '@/assets/videos/lying-hip-knee-raise.mp4.asset.json';
 import kneeExtensionChair from '@/assets/videos/seated-alternate-knee-extension-on-chair.mp4.asset.json';
 import hipFlexorKneeling from '@/assets/videos/kneeling-hip-flexor-frontal.mp4.asset.json';
+import standToSquat from '@/assets/videos/stand-to-squat.mp4.asset.json';
+import airBikeChair from '@/assets/videos/seated-air-bike-chair.mp4.asset.json';
+import scapularAdduction from '@/assets/videos/sitting-scapular-adduction.mp4.asset.json';
+import floorSlide from '@/assets/videos/lying-floor-slide.mp4.asset.json';
+import lyingLegCurl from '@/assets/videos/bodyweight-lying-legs-curl.mp4.asset.json';
+import overheadSitUp from '@/assets/videos/arms-overhead-full-situp.mp4.asset.json';
+import deepSquatHead from '@/assets/videos/deep-squat-head-to-floor.mp4.asset.json';
 
 /** Exercises that ship with an animated demonstration video. */
 export const videoExercises: Exercise[] = [
