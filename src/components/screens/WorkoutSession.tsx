@@ -1,9 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Check, Timer, SkipForward, ChevronDown, ChevronUp } from 'lucide-react';
-import { WorkoutDay, Exercise } from '@/lib/types';
+import { WorkoutDay } from '@/lib/types';
 import { markWorkoutComplete } from '@/lib/store';
 import { useI18n } from '@/lib/i18n';
+import { localizeExercise } from '@/lib/exerciseI18n';
 
 interface WorkoutSessionProps {
   workout: WorkoutDay;
@@ -11,7 +12,7 @@ interface WorkoutSessionProps {
 }
 
 export default function WorkoutSession({ workout, onClose }: WorkoutSessionProps) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const [currentIdx, setCurrentIdx] = useState(0);
   const [currentSet, setCurrentSet] = useState(1);
   const [resting, setResting] = useState(false);
@@ -19,7 +20,7 @@ export default function WorkoutSession({ workout, onClose }: WorkoutSessionProps
   const [expanded, setExpanded] = useState(false);
   const [completed, setCompleted] = useState(false);
 
-  const exercise = workout.exercises[currentIdx];
+  const exercise = localizeExercise(workout.exercises[currentIdx], lang);
   const isLast = currentIdx === workout.exercises.length - 1;
 
   useEffect(() => {
@@ -103,6 +104,21 @@ export default function WorkoutSession({ workout, onClose }: WorkoutSessionProps
           <motion.div key={exercise.id} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }}>
             <h2 className="text-3xl font-display mb-1">{exercise.name.toUpperCase()}</h2>
             <p className="text-sm text-muted-foreground mb-4">{exercise.description}</p>
+
+            {exercise.videoUrl && (
+              <div className="mb-4 rounded-lg overflow-hidden border border-border bg-card">
+                <video
+                  key={exercise.videoUrl}
+                  src={exercise.videoUrl}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  controls
+                  className="w-full aspect-video object-cover bg-secondary"
+                />
+              </div>
+            )}
 
             {/* Sets indicator */}
             <div className="flex gap-2 mb-4">
