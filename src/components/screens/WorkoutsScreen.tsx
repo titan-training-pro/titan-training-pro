@@ -1,17 +1,25 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Dumbbell, StretchHorizontal, Play, Clock, Flame, Shield } from 'lucide-react';
-import { gymWorkouts, calisthenicsWorkouts } from '@/lib/workouts';
+import { Dumbbell, StretchHorizontal, Play, Clock, Flame, Shield, PersonStanding, Activity } from 'lucide-react';
+import { gymWorkouts, calisthenicsWorkouts, bodyweightWorkouts, stretchingWorkouts } from '@/lib/workouts';
 import { useI18n } from '@/lib/i18n';
 
 interface WorkoutsScreenProps {
   onStartWorkout: (workoutId: string) => void;
 }
 
+type Niche = 'gym' | 'calisthenics' | 'bodyweight' | 'stretching';
+
 export default function WorkoutsScreen({ onStartWorkout }: WorkoutsScreenProps) {
   const { t } = useI18n();
-  const [tab, setTab] = useState<'gym' | 'calisthenics'>('gym');
-  const workouts = tab === 'gym' ? gymWorkouts : calisthenicsWorkouts;
+  const [tab, setTab] = useState<Niche>('gym');
+  const byNiche: Record<Niche, typeof gymWorkouts> = {
+    gym: gymWorkouts,
+    calisthenics: calisthenicsWorkouts,
+    bodyweight: bodyweightWorkouts,
+    stretching: stretchingWorkouts,
+  };
+  const workouts = byNiche[tab];
 
   return (
     <div className="pb-28 px-5 pt-8">
