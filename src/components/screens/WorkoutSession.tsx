@@ -12,7 +12,7 @@ interface WorkoutSessionProps {
 }
 
 export default function WorkoutSession({ workout, onClose }: WorkoutSessionProps) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const [currentIdx, setCurrentIdx] = useState(0);
   const [currentSet, setCurrentSet] = useState(1);
   const [resting, setResting] = useState(false);
@@ -20,7 +20,7 @@ export default function WorkoutSession({ workout, onClose }: WorkoutSessionProps
   const [expanded, setExpanded] = useState(false);
   const [completed, setCompleted] = useState(false);
 
-  const exercise = workout.exercises[currentIdx];
+  const exercise = localizeExercise(workout.exercises[currentIdx], lang);
   const isLast = currentIdx === workout.exercises.length - 1;
 
   useEffect(() => {
