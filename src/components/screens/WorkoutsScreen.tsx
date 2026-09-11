@@ -12,14 +12,20 @@ type Niche = 'gym' | 'calisthenics' | 'bodyweight' | 'stretching';
 
 export default function WorkoutsScreen({ onStartWorkout }: WorkoutsScreenProps) {
   const { t } = useI18n();
-  const [tab, setTab] = useState<Niche>('gym');
   const byNiche: Record<Niche, typeof gymWorkouts> = {
     gym: gymWorkouts,
     calisthenics: calisthenicsWorkouts,
     bodyweight: bodyweightWorkouts,
     stretching: stretchingWorkouts,
   };
-  const workouts = byNiche[tab];
+  const tabItems = [
+    { key: 'gym' as const, labelKey: 'workouts.gym', icon: Dumbbell },
+    { key: 'calisthenics' as const, labelKey: 'workouts.calisthenics', icon: PersonStanding },
+    { key: 'bodyweight' as const, labelKey: 'workouts.bodyweight', icon: Activity },
+    { key: 'stretching' as const, labelKey: 'workouts.stretching', icon: StretchHorizontal },
+  ].filter(item => byNiche[item.key].length > 0);
+  const [tab, setTab] = useState<Niche>(tabItems[0]?.key ?? 'bodyweight');
+  const workouts = byNiche[tab] ?? [];
 
   return (
     <div className="pb-28 px-5 pt-8">
@@ -27,12 +33,7 @@ export default function WorkoutsScreen({ onStartWorkout }: WorkoutsScreenProps) 
       <h1 className="font-display text-[40px] leading-[0.95] mb-5">{t('workouts.title')}</h1>
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 p-1 rounded-2xl bg-secondary mb-6">
-        {[
-          { key: 'gym' as const, labelKey: 'workouts.gym', icon: Dumbbell },
-          { key: 'calisthenics' as const, labelKey: 'workouts.calisthenics', icon: PersonStanding },
-          { key: 'bodyweight' as const, labelKey: 'workouts.bodyweight', icon: Activity },
-          { key: 'stretching' as const, labelKey: 'workouts.stretching', icon: StretchHorizontal },
-        ].map(item => (
+        {tabItems.map(item => (
           <button key={item.key} onClick={() => setTab(item.key)}
             className={`py-2.5 px-2 rounded-xl font-display text-[11px] sm:text-xs tracking-wide flex items-center justify-center gap-1.5 transition-all ${
               tab === item.key ? 'bg-primary text-primary-foreground' : 'text-muted-foreground'

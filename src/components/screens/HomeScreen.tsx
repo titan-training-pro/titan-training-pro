@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Play, Flame, Trophy, Zap, ListChecks, Shield } from 'lucide-react';
 import { UserProfile } from '@/lib/types';
 import { getStreak, getTotalWorkouts, getTodayCalories } from '@/lib/store';
-import { gymWorkouts } from '@/lib/workouts';
+import { allWorkouts } from '@/lib/workouts';
 import { useI18n } from '@/lib/i18n';
 import titanMark from '@/assets/titan-mark.png';
 
@@ -24,7 +24,7 @@ export default function HomeScreen({ profile, onStartWorkout }: HomeScreenProps)
   const streak = getStreak();
   const totalWorkouts = getTotalWorkouts();
   const todayCalories = getTodayCalories();
-  const todayWorkout = gymWorkouts[new Date().getDay() % gymWorkouts.length];
+  const todayWorkout = allWorkouts[new Date().getDay() % allWorkouts.length];
 
   const points = totalWorkouts * 100 + streak * 20;
   const rankIdx = Math.max(0, RANKS.findIndex((r, i) => points < (RANKS[i + 1]?.min ?? Infinity)));
@@ -150,7 +150,7 @@ export default function HomeScreen({ profile, onStartWorkout }: HomeScreenProps)
         <div className="rule-athletic flex-1" />
       </div>
       <div className="space-y-3">
-        {gymWorkouts.slice(0, 3).map((w, i) => (
+        {allWorkouts.slice(0, 3).map((w, i) => (
           <motion.button key={w.id} initial={{ opacity: 0, x: -14 }} animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.45 + i * 0.07 }} whileTap={{ scale: 0.985 }} onClick={() => onStartWorkout(w.id)}
             className="w-full surface-card p-4 flex items-center justify-between text-left hover:border-bronze/50 transition-colors">
