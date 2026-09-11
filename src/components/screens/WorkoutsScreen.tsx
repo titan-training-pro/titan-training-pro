@@ -12,14 +12,20 @@ type Niche = 'gym' | 'calisthenics' | 'bodyweight' | 'stretching';
 
 export default function WorkoutsScreen({ onStartWorkout }: WorkoutsScreenProps) {
   const { t } = useI18n();
-  const [tab, setTab] = useState<Niche>('gym');
   const byNiche: Record<Niche, typeof gymWorkouts> = {
     gym: gymWorkouts,
     calisthenics: calisthenicsWorkouts,
     bodyweight: bodyweightWorkouts,
     stretching: stretchingWorkouts,
   };
-  const workouts = byNiche[tab];
+  const tabItems = [
+    { key: 'gym' as const, labelKey: 'workouts.gym', icon: Dumbbell },
+    { key: 'calisthenics' as const, labelKey: 'workouts.calisthenics', icon: PersonStanding },
+    { key: 'bodyweight' as const, labelKey: 'workouts.bodyweight', icon: Activity },
+    { key: 'stretching' as const, labelKey: 'workouts.stretching', icon: StretchHorizontal },
+  ].filter(item => byNiche[item.key].length > 0);
+  const [tab, setTab] = useState<Niche>(tabItems[0]?.key ?? 'bodyweight');
+  const workouts = byNiche[tab] ?? [];
 
   return (
     <div className="pb-28 px-5 pt-8">
