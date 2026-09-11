@@ -5,6 +5,7 @@ import { WorkoutDay } from '@/lib/types';
 import { markWorkoutComplete } from '@/lib/store';
 import { useI18n } from '@/lib/i18n';
 import { localizeExercise } from '@/lib/exerciseI18n';
+import { getMuscleImage } from '@/lib/muscleImages';
 
 interface WorkoutSessionProps {
   workout: WorkoutDay;
@@ -17,7 +18,7 @@ export default function WorkoutSession({ workout, onClose }: WorkoutSessionProps
   const [currentSet, setCurrentSet] = useState(1);
   const [resting, setResting] = useState(false);
   const [restTime, setRestTime] = useState(0);
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(true);
   const [completed, setCompleted] = useState(false);
 
   const exercise = localizeExercise(workout.exercises[currentIdx], lang);
@@ -157,6 +158,14 @@ export default function WorkoutSession({ workout, onClose }: WorkoutSessionProps
                   </div>
                   <div className="bg-card rounded-lg border border-border p-4 mb-4">
                     <h4 className="font-display text-sm mb-2 text-warning">{t('session.muscles')}</h4>
+                    <img
+                      src={getMuscleImage(exercise.muscleGroup)}
+                      alt={`${exercise.name} - ${exercise.musclesWorked.join(', ')}`}
+                      loading="lazy"
+                      width={768}
+                      height={768}
+                      className="w-full max-w-[220px] mx-auto rounded-lg mb-3 bg-secondary"
+                    />
                     <div className="flex flex-wrap gap-2">{exercise.musclesWorked.map((m, i) => (
                       <span key={m} className={`text-xs px-2 py-1 rounded-full ${i === 0 ? 'bg-primary/20 text-primary' : 'bg-accent/20 text-accent'}`}>
                         {i === 0 ? '● ' : '○ '}{m}
