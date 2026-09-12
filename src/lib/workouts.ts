@@ -1,7 +1,10 @@
 import { WorkoutDay } from './types';
 import { exercises } from './exercises';
 
-const getExercises = (ids: string[]) => ids.map(id => exercises.find(e => e.id === id)!).filter(Boolean);
+const getExercises = (ids: string[]) => ids.flatMap(id => {
+  const exercise = exercises.find(item => item.id === id);
+  return exercise ? [exercise] : [];
+});
 
 export const gymWorkouts: WorkoutDay[] = [];
 
@@ -46,7 +49,7 @@ export const stretchingWorkouts: WorkoutDay[] = [
     name: 'Mobility Flow',
     nameKey: 'workout.mobilityFlow',
     muscleGroups: ['Full Body'],
-    exercises: getExercises(['stand-to-squat', 'deep-squat-head-to-floor', 'kneeling-hip-flexor-stretch']),
+    exercises: getExercises(['stand-to-squat', 'squat-mobility-side-bend', 'deep-squat-head-to-floor', 'kneeling-hip-flexor-stretch']),
     duration: 15,
     difficulty: 'Beginner',
     caloriesBurned: 80,

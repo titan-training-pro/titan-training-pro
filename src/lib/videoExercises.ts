@@ -9,13 +9,14 @@ import legRaiseChair from '@/assets/videos/seated-extended-leg-raise-on-a-chair.
 import hipKneeRaise from '@/assets/videos/lying-hip-knee-raise.mp4.asset.json';
 import kneeExtensionChair from '@/assets/videos/seated-alternate-knee-extension-on-chair.mp4.asset.json';
 import hipFlexorKneeling from '@/assets/videos/kneeling-hip-flexor-frontal.mp4.asset.json';
-import standToSquat from '@/assets/videos/stand-to-squat.mp4.asset.json';
-import airBikeChair from '@/assets/videos/seated-air-bike-chair.mp4.asset.json';
-import scapularAdduction from '@/assets/videos/sitting-scapular-adduction.mp4.asset.json';
-import floorSlide from '@/assets/videos/lying-floor-slide.mp4.asset.json';
-import lyingLegCurl from '@/assets/videos/bodyweight-lying-legs-curl.mp4.asset.json';
-import overheadSitUp from '@/assets/videos/arms-overhead-full-situp.mp4.asset.json';
-import deepSquatHead from '@/assets/videos/deep-squat-head-to-floor.mp4.asset.json';
+import standToSquat from '@/assets/videos/stand-to-squat-v2.mp4.asset.json';
+import airBikeChair from '@/assets/videos/seated-air-bike-chair-v2.mp4.asset.json';
+import scapularAdduction from '@/assets/videos/sitting-scapular-adduction-v2.mp4.asset.json';
+import floorSlide from '@/assets/videos/lying-floor-slide-v2.mp4.asset.json';
+import lyingLegCurl from '@/assets/videos/bodyweight-lying-leg-curl-v2.mp4.asset.json';
+import overheadSitUp from '@/assets/videos/arms-overhead-full-situp-v2.mp4.asset.json';
+import deepSquatHead from '@/assets/videos/deep-squat-head-to-floor-v2.mp4.asset.json';
+import squatMobilitySideBend from '@/assets/videos/squat-mobility-side-bend.mp4.asset.json';
 
 /** Exercises that ship with an animated demonstration video. */
 export const videoExercises: Exercise[] = [
@@ -417,6 +418,31 @@ export const videoExercises: Exercise[] = [
         instructions: ['De pie con pies más anchos que la cadera', 'Agáchate y apoya las manos en el suelo', 'Baja la cabeza hacia el suelo', 'Respira hondo y mantén'],
         commonMistakes: ['Forzar el cuello', 'Levantar los talones', 'Rebotar en el estiramiento'],
         musclesWorked: ['Isquiotibiales', 'Glúteos', 'Aductores', 'Erectores Espinales'] },
+    },
+  },
+  {
+    id: 'squat-mobility-side-bend',
+    name: 'Squat Mobility Side Bend',
+    muscleGroup: 'Full Body',
+    equipment: 'None',
+    level: 'beginner',
+    type: 'calisthenics',
+    category: 'stretching',
+    videoUrl: squatMobilitySideBend.url,
+    description: 'Deep-squat mobility drill with a controlled side bend to open the hips, torso and shoulders.',
+    instructions: ['Stand with the feet wider than the hips', 'Lower into a comfortable deep squat', 'Reach one arm overhead and bend the torso gently to the opposite side', 'Return to the center and alternate sides with control'],
+    commonMistakes: ['Letting the heels lift', 'Collapsing the chest forward', 'Forcing the side bend', 'Moving too quickly'],
+    musclesWorked: ['Glutes', 'Adductors', 'Obliques', 'Shoulders'],
+    sets: 2, reps: '8-10 cada lado', restSeconds: 30,
+    translations: {
+      pt: { name: 'Mobilidade no Agachamento com Inclinação Lateral', description: 'Mobilidade em agachamento profundo com inclinação lateral controlada para abrir quadril, tronco e ombros.',
+        instructions: ['Fique em pé com os pés além da largura do quadril', 'Desça até um agachamento profundo confortável', 'Leve um braço acima da cabeça e incline o tronco suavemente para o lado oposto', 'Volte ao centro e alterne os lados com controle'],
+        commonMistakes: ['Levantar os calcanhares', 'Deixar o peito cair para frente', 'Forçar a inclinação lateral', 'Executar rápido demais'],
+        musclesWorked: ['Glúteos', 'Adutores', 'Oblíquos', 'Ombros'] },
+      es: { name: 'Movilidad en Sentadilla con Inclinación Lateral', description: 'Movilidad en sentadilla profunda con inclinación lateral controlada para abrir caderas, torso y hombros.',
+        instructions: ['Ponte de pie con los pies más anchos que la cadera', 'Baja a una sentadilla profunda cómoda', 'Lleva un brazo sobre la cabeza e inclina suavemente el torso al lado contrario', 'Vuelve al centro y alterna los lados con control'],
+        commonMistakes: ['Levantar los talones', 'Dejar caer el pecho hacia delante', 'Forzar la inclinación lateral', 'Moverse demasiado rápido'],
+        musclesWorked: ['Glúteos', 'Aductores', 'Oblicuos', 'Hombros'] },
     },
   },
 ];
