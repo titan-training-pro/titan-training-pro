@@ -47,6 +47,7 @@ export default function Index() {
     <div className="min-h-screen bg-background max-w-lg mx-auto relative">
       {screen === 'home' && <HomeScreen profile={profile} onStartWorkout={handleStartWorkout} />}
       {screen === 'workouts' && <WorkoutsScreen onStartWorkout={handleStartWorkout} />}
+      {screen === 'library' && <ExerciseLibraryScreen />}
       {screen === 'nutrition' && <NutritionScreen profile={profile} />}
       {screen === 'progress' && <ProgressScreen profile={profile} />}
       {screen === 'profile' && <ProfileScreen profile={profile} onReset={handleReset} />}

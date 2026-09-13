@@ -14,6 +14,7 @@ export default function BottomNav({ active, onChange }: BottomNavProps) {
   const tabs: { key: AppScreen; label: string; icon: React.ElementType }[] = [
     { key: 'home', label: t('nav.home'), icon: Home },
     { key: 'workouts', label: t('nav.workouts'), icon: Dumbbell },
+    { key: 'library', label: t('nav.library'), icon: Library },
     { key: 'nutrition', label: t('nav.nutrition'), icon: Apple },
     { key: 'progress', label: t('nav.progress'), icon: TrendingUp },
     { key: 'profile', label: t('nav.profile'), icon: User },

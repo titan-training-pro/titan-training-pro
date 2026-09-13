@@ -10,6 +10,11 @@ const translations: Record<string, Record<Language, string>> = {
   'nav.progress': { pt: 'Progresso', en: 'Progress', es: 'Progreso' },
   'nav.profile': { pt: 'Perfil', en: 'Profile', es: 'Perfil' },
   'nav.settings': { pt: 'Config', en: 'Settings', es: 'Ajustes' },
+  'nav.library': { pt: 'Guias', en: 'Library', es: 'Guías' },
+  'library.title': { pt: 'BIBLIOTECA DE EXERCÍCIOS', en: 'EXERCISE LIBRARY', es: 'BIBLIOTECA DE EJERCICIOS' },
+  'library.search': { pt: 'Buscar exercício...', en: 'Search exercise...', es: 'Buscar ejercicio...' },
+  'library.all': { pt: 'Todos', en: 'All', es: 'Todos' },
+  'library.empty': { pt: 'Nenhum exercício encontrado.', en: 'No exercises found.', es: 'No se encontraron ejercicios.' },
 
   // Home
   'home.welcome': { pt: 'Bem-vindo de volta,', en: 'Welcome back,', es: 'Bienvenido,' },
