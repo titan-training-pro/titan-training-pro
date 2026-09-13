@@ -1,4 +1,4 @@
-import { Home, Dumbbell, Apple, TrendingUp, User, Settings } from 'lucide-react';
+import { Home, Dumbbell, Apple, TrendingUp, User, Settings, Library } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { AppScreen } from '@/lib/types';
 import { useI18n } from '@/lib/i18n';

@@ -7,6 +7,7 @@ import BottomNav from '@/components/BottomNav';
 import SplashScreen from '@/components/SplashScreen';
 import HomeScreen from '@/components/screens/HomeScreen';
 import WorkoutsScreen from '@/components/screens/WorkoutsScreen';
+import ExerciseLibraryScreen from '@/components/screens/ExerciseLibraryScreen';
 import WorkoutSession from '@/components/screens/WorkoutSession';
 import NutritionScreen from '@/components/screens/NutritionScreen';
 import ProgressScreen from '@/components/screens/ProgressScreen';
