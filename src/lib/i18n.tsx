@@ -6,7 +6,6 @@ const translations: Record<string, Record<Language, string>> = {
   // Navigation
   'nav.home': { pt: 'Início', en: 'Home', es: 'Inicio' },
   'nav.workouts': { pt: 'Treinos', en: 'Workouts', es: 'Entrenos' },
-  'nav.nutrition': { pt: 'Nutrição', en: 'Nutrition', es: 'Nutrición' },
   'nav.progress': { pt: 'Progresso', en: 'Progress', es: 'Progreso' },
   'nav.profile': { pt: 'Perfil', en: 'Profile', es: 'Perfil' },
   'nav.settings': { pt: 'Config', en: 'Settings', es: 'Ajustes' },
@@ -66,43 +65,6 @@ const translations: Record<string, Record<Language, string>> = {
   'session.set': { pt: 'Série', en: 'Set', es: 'Serie' },
   'session.reps': { pt: 'Reps', en: 'Reps', es: 'Reps' },
   'session.watchVideo': { pt: 'ASSISTIR VÍDEO', en: 'WATCH VIDEO', es: 'VER VÍDEO' },
-  'session.anatomy': { pt: 'ANATOMIA 3D', en: '3D ANATOMY', es: 'ANATOMÍA 3D' },
-
-  // Nutrition
-  'nutrition.title': { pt: 'NUTRIÇÃO', en: 'NUTRITION', es: 'NUTRICIÓN' },
-  'nutrition.personalized': { pt: 'Personalizado para seu objetivo de', en: 'Personalized for your', es: 'Personalizado para tu objetivo de' },
-  'nutrition.dailyPlan': { pt: 'PLANO DIÁRIO', en: 'DAILY MEAL PLAN', es: 'PLAN DIARIO' },
-  'nutrition.calories': { pt: 'Calorias', en: 'Calories', es: 'Calorías' },
-  'nutrition.protein': { pt: 'Proteína', en: 'Protein', es: 'Proteína' },
-  'nutrition.carbs': { pt: 'Carboidratos', en: 'Carbs', es: 'Carbohidratos' },
-  'nutrition.fats': { pt: 'Gorduras', en: 'Fats', es: 'Grasas' },
-
-  // Meal names
-  'meal.breakfast': { pt: 'Café da Manhã', en: 'Breakfast', es: 'Desayuno' },
-  'meal.morningSnack': { pt: 'Lanche da Manhã', en: 'Mid-Morning Snack', es: 'Merienda Matutina' },
-  'meal.lunch': { pt: 'Almoço', en: 'Lunch', es: 'Almuerzo' },
-  'meal.preWorkout': { pt: 'Pré-Treino', en: 'Pre-Workout', es: 'Pre-Entreno' },
-  'meal.dinner': { pt: 'Jantar', en: 'Dinner', es: 'Cena' },
-
-  // Foods
-  'food.oatsBanana': { pt: 'Aveia com banana', en: 'Oats with banana', es: 'Avena con plátano' },
-  'food.scrambledEggs': { pt: 'Ovos mexidos (3)', en: 'Scrambled eggs (3)', es: 'Huevos revueltos (3)' },
-  'food.orangeJuice': { pt: 'Suco de laranja', en: 'Orange juice', es: 'Zumo de naranja' },
-  'food.greekYogurt': { pt: 'Iogurte grego', en: 'Greek yogurt', es: 'Yogur griego' },
-  'food.mixedNuts': { pt: 'Mix de castanhas (30g)', en: 'Mixed nuts (30g)', es: 'Frutos secos (30g)' },
-  'food.apple': { pt: 'Maçã', en: 'Apple', es: 'Manzana' },
-  'food.grilledChicken': { pt: 'Frango grelhado (200g)', en: 'Grilled chicken breast (200g)', es: 'Pechuga de pollo a la plancha (200g)' },
-  'food.brownRice': { pt: 'Arroz integral (150g)', en: 'Brown rice (150g)', es: 'Arroz integral (150g)' },
-  'food.mixedVegetables': { pt: 'Legumes variados', en: 'Mixed vegetables', es: 'Verduras variadas' },
-  'food.oliveOil': { pt: 'Fio de azeite', en: 'Olive oil drizzle', es: 'Chorrito de aceite de oliva' },
-  'food.banana': { pt: 'Banana', en: 'Banana', es: 'Plátano' },
-  'food.wheyShake': { pt: 'Shake de whey protein', en: 'Whey protein shake', es: 'Batido de whey protein' },
-  'food.riceCake': { pt: 'Biscoito de arroz', en: 'Rice cake', es: 'Tortita de arroz' },
-  'food.salmon': { pt: 'Filé de salmão (200g)', en: 'Salmon fillet (200g)', es: 'Filete de salmón (200g)' },
-  'food.sweetPotato': { pt: 'Batata-doce (150g)', en: 'Sweet potato (150g)', es: 'Boniato (150g)' },
-  'food.broccoli': { pt: 'Brócolis no vapor', en: 'Steamed broccoli', es: 'Brócoli al vapor' },
-  'food.avocado': { pt: 'Abacate (meio)', en: 'Avocado (half)', es: 'Aguacate (medio)' },
-
   // Progress
   'progress.title': { pt: 'PROGRESSO', en: 'PROGRESS', es: 'PROGRESO' },
   'progress.currentStreak': { pt: 'Sequência Atual', en: 'Current Streak', es: 'Racha Actual' },
@@ -156,7 +118,7 @@ const translations: Record<string, Record<Language, string>> = {
   'settings.confirm': { pt: 'Confirmar', en: 'Confirm', es: 'Confirmar' },
   'settings.general': { pt: 'GERAL', en: 'GENERAL', es: 'GENERAL' },
   'settings.resetProfile': { pt: 'RESETAR PERFIL', en: 'RESET PROFILE', es: 'REINICIAR PERFIL' },
-  'settings.freeDesc': { pt: 'Treinos básicos e nutrição', en: 'Basic workouts & nutrition', es: 'Entrenos básicos y nutrición' },
+  'settings.freeDesc': { pt: 'Treinos básicos e guias', en: 'Basic workouts and guides', es: 'Entrenos básicos y guías' },
   'settings.premiumDesc': { pt: 'R$19.90/mês • Acesso completo', en: 'R$19.90/month • Full access', es: 'R$19.90/mes • Acceso completo' },
 
   // Onboarding

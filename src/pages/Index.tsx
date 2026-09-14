@@ -9,7 +9,6 @@ import HomeScreen from '@/components/screens/HomeScreen';
 import WorkoutsScreen from '@/components/screens/WorkoutsScreen';
 import ExerciseLibraryScreen from '@/components/screens/ExerciseLibraryScreen';
 import WorkoutSession from '@/components/screens/WorkoutSession';
-import NutritionScreen from '@/components/screens/NutritionScreen';
 import ProgressScreen from '@/components/screens/ProgressScreen';
 import ProfileScreen from '@/components/screens/ProfileScreen';
 import SettingsScreen from '@/components/screens/SettingsScreen';
@@ -48,7 +47,6 @@ export default function Index() {
       {screen === 'home' && <HomeScreen profile={profile} onStartWorkout={handleStartWorkout} />}
       {screen === 'workouts' && <WorkoutsScreen onStartWorkout={handleStartWorkout} />}
       {screen === 'library' && <ExerciseLibraryScreen />}
-      {screen === 'nutrition' && <NutritionScreen profile={profile} />}
       {screen === 'progress' && <ProgressScreen profile={profile} />}
       {screen === 'profile' && <ProfileScreen profile={profile} onReset={handleReset} />}
       {screen === 'settings' && <SettingsScreen onReset={handleReset} />}

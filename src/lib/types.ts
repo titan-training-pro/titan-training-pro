@@ -50,24 +50,6 @@ export interface WorkoutDay {
   caloriesBurned: number;
 }
 
-export interface MealPlan {
-  calories: number;
-  protein: number;
-  carbs: number;
-  fats: number;
-  meals: Meal[];
-}
-
-export interface Meal {
-  nameKey: string;
-  time: string;
-  calories: number;
-  protein: number;
-  carbs: number;
-  fats: number;
-  foodKeys: string[];
-}
-
 export interface ProgressEntry {
   date: string;
   weight: number;
@@ -76,4 +58,4 @@ export interface ProgressEntry {
   workoutsCompleted: number;
 }
 
-export type AppScreen = 'onboarding' | 'home' | 'workouts' | 'library' | 'nutrition' | 'progress' | 'profile' | 'settings';
+export type AppScreen = 'onboarding' | 'home' | 'workouts' | 'library' | 'progress' | 'profile' | 'settings';
