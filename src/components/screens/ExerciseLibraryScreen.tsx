@@ -1,11 +1,10 @@
 import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, X, Play, Dumbbell, Timer, Repeat } from 'lucide-react';
+import { Search, X, Play, Timer, Repeat } from 'lucide-react';
 import { Exercise } from '@/lib/types';
 import { exercises } from '@/lib/exercises';
 import { useI18n } from '@/lib/i18n';
 import { localizeExercise } from '@/lib/exerciseI18n';
-import { getMuscleImage } from '@/lib/muscleImages';
 
 const muscleGroups = ['Abs', 'Back', 'Chest', 'Legs', 'Shoulders', 'Full Body'] as const;
 const categories = ['bodyweight', 'stretching'] as const;
@@ -76,14 +75,6 @@ export default function ExerciseLibraryScreen() {
             onClick={() => setSelected(e)}
             className="surface-card w-full text-left p-4 flex items-center gap-4"
           >
-            <img
-              src={getMuscleImage(e.muscleGroup)}
-              alt={e.muscleGroup}
-              loading="lazy"
-              width={96}
-              height={96}
-              className="w-16 h-16 rounded-xl object-cover bg-secondary shrink-0"
-            />
             <div className="flex-1 min-w-0">
               <h3 className="font-display text-lg leading-tight truncate">{e.name.toUpperCase()}</h3>
               <div className="flex flex-wrap items-center gap-2 mt-1.5 text-[11px] text-muted-foreground">
@@ -155,14 +146,6 @@ export default function ExerciseLibraryScreen() {
 
               <div className="bg-card rounded-xl border border-border p-4">
                 <h4 className="font-display text-sm mb-2 text-warning">{t('session.muscles')}</h4>
-                <img
-                  src={getMuscleImage(selected.muscleGroup)}
-                  alt={`${selected.name} - ${selected.musclesWorked.join(', ')}`}
-                  loading="lazy"
-                  width={768}
-                  height={768}
-                  className="w-full max-w-[220px] mx-auto rounded-lg mb-3 bg-secondary"
-                />
                 <div className="flex flex-wrap gap-2">{selected.musclesWorked.map((m, i) => (
                   <span key={m} className={`text-xs px-2 py-1 rounded-full ${i === 0 ? 'bg-primary/20 text-primary' : 'bg-accent/20 text-accent'}`}>
                     {i === 0 ? '● ' : '○ '}{m}
